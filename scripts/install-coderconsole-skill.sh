@@ -25,9 +25,9 @@ Options:
   --help        Show this help.
 
 Examples:
-  curl -fsSL https://raw.githubusercontent.com/nitiwari-dev/coderconsole-skills/main/scripts/install-coderconsole-skill.sh | sh -s -- --agent codex --skill coderconsole-base64
-  curl -fsSL https://raw.githubusercontent.com/nitiwari-dev/coderconsole-skills/main/scripts/install-coderconsole-skill.sh | sh -s -- --agent codex --skill coderconsole-json --skill coderconsole-color --ref v1.0.0
-  curl -fsSL https://raw.githubusercontent.com/nitiwari-dev/coderconsole-skills/main/scripts/install-coderconsole-skill.sh | sh -s -- --agent all --skill all --scope project
+  curl -fsSL https://coderconsole.com/skills/install.sh | sh -s -- --agent codex --skill coderconsole-base64
+  curl -fsSL https://coderconsole.com/skills/install.sh | sh -s -- --agent codex --skill coderconsole-json --skill coderconsole-color --ref v1.0.0
+  curl -fsSL https://coderconsole.com/skills/install.sh | sh -s -- --agent all --skill all --scope project
 EOF
 }
 
