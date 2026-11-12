@@ -25,9 +25,9 @@ Options:
   --help        Show this help.
 
 Examples:
-  curl -fsSL https://coderconsole.com/skills/install.sh | sh -s -- --agent codex --skill coderconsole-base64
-  curl -fsSL https://coderconsole.com/skills/install.sh | sh -s -- --agent codex --skill coderconsole-json --skill coderconsole-color --ref v1.0.0
-  curl -fsSL https://coderconsole.com/skills/install.sh | sh -s -- --agent all --skill all --scope project
+  curl -fsSL https://www.coderconsole.com/skills/install.sh | sh -s -- --agent codex --skill coderconsole-base64
+  curl -fsSL https://www.coderconsole.com/skills/install.sh | sh -s -- --agent codex --skill coderconsole-json --skill coderconsole-color --ref v1.0.0
+  curl -fsSL https://www.coderconsole.com/skills/install.sh | sh -s -- --agent all --skill all --scope project
 EOF
 }
 
@@ -140,6 +140,7 @@ else
   mkdir -p "$SKILLS_DIR"
   MANIFEST="$SKILLS_DIR/manifest.conf"
   MANIFEST_URL="https://raw.githubusercontent.com/$REPOSITORY/$REF/skills/manifest.conf"
+  printf 'Fetching skill list from %s...\n' "$REF"
   curl -fsSL "$MANIFEST_URL" -o "$MANIFEST" || fail "Could not fetch the skills manifest for ref '$REF'. Check that the ref exists and $REPOSITORY is public."
   REMOTE_MODE=true
 fi
@@ -176,12 +177,22 @@ validate_skill_selection() {
 validate_skill_selection
 
 prepare_skills() {
+  if [ "$REMOTE_MODE" = true ]; then
+    printf 'Downloading selected skills. This may take a moment...\n'
+  fi
   while IFS='|' read -r prepared_skill prepared_files; do
     case "$prepared_skill" in
       ""|\#*) continue ;;
     esac
     if [ "$prepared_skill" != _runtime ] && ! is_skill_selected "$prepared_skill"; then
       continue
+    fi
+    if [ "$REMOTE_MODE" = true ]; then
+      if [ "$prepared_skill" = _runtime ]; then
+        printf '  Downloading shared runtime...\n'
+      else
+        printf '  Downloading %s...\n' "$prepared_skill"
+      fi
     fi
     old_ifs=$IFS
     IFS=,
