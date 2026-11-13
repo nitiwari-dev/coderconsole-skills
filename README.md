@@ -1,5 +1,7 @@
 # CoderConsole skills
 
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/coderconsole)
+
 Add CoderConsole developer tools to your AI coding workflow. Install skills into Codex, Claude Code, or Google Antigravity so your agent can help with tasks such as formatting JSON, comparing files, converting data, and generating hashes.
 
 Choose one skill, several skills, or the full collection. Install them in the current project or for your user account.
@@ -93,10 +95,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on adding or updating a 
 | SQL formatter | Formats SQL while preserving quoted values and comments. | `coderconsole-sql` |
 | Timestamp converter | Converts Unix timestamps and readable dates. | `coderconsole-timestamp` |
 | URL encoder/decoder | Encodes or decodes URL components and complete URLs. | `coderconsole-url` |
-| UUID generator | Generates UUID v4 or v7 values and validates UUID text. | `coderconsole-uuid` |
+| UUID generator | Generates UUID v4 or v7 values; use the browser tool to validate UUID text. | `coderconsole-uuid` |
 | YAML ↔ JSON | Converts common YAML and JSON data. | `coderconsole-yaml-json` |
 
-Installing requires `sh` and `curl`; running a skill's bundled script requires Node.js. Each skill's `SKILL.md` documents its command and parameters. File operations write to a new output path unless the operation returns a small value such as a color conversion or generated UUID.
+Installing requires `sh` and `curl`; running a skill's bundled script requires Node.js. Each skill's `SKILL.md` documents its command and parameters. File-based operations write to a new output path; inline tools such as color, cron, timestamp, and UUID print results directly. Some file-based commands also support `--stdout` when requested.
 
 ## Privacy
 

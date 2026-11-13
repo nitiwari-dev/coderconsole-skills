@@ -9,7 +9,7 @@ Create an architecture sketch from the user's description or the specific reposi
 
 ## Execute the tool
 
-Use the bundled local Node.js script to perform the operation. It processes file paths locally and writes file outputs without printing the payload; choose a new output path so existing files are not overwritten. Start with `node <skill-dir>/scripts/architecture-sketcher.mjs --help` for its parameters. Example:
+Run the bundled script from its installed skill directory with Node.js. File-based tools read local input paths. When a command writes a file, it refuses to overwrite an existing destination. Use `--stdout` only when that command supports it and the user explicitly wants terminal output; tools that take inline values print their results directly. Start with `node <skill-dir>/scripts/architecture-sketcher.mjs --help` for its parameters. Example:
 
 ```sh
 node <skill-dir>/scripts/architecture-sketcher.mjs --input components.json --output architecture.mmd

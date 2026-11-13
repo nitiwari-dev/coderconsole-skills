@@ -208,8 +208,9 @@ prepare_skills() {
         file_url="https://raw.githubusercontent.com/$REPOSITORY/$REF/skills/$prepared_skill/$prepared_path"
         curl -fsSL "$file_url" -o "$prepared_file" || fail "Could not download $prepared_skill/$prepared_path."
       else
-        [ -f "$prepared_file" ] || fail "Manifest references missing file: $prepared_file"
+        [ -s "$prepared_file" ] || fail "Manifest references missing or empty file: $prepared_file"
       fi
+      [ -s "$prepared_file" ] || fail "Manifest references missing or empty file: $prepared_file"
     done
   done < "$MANIFEST"
 }
